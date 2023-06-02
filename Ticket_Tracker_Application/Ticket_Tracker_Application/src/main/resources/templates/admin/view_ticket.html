@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Ticket Tracker Application</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head>
+<body>
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+		<!-- Brand -->
+		<a class="navbar-brand" href="#">Ticket Tracker Appication - 1.0</a>
+
+		<!-- Toggler/collapsibe Button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a aria-current="page" class="nav-link active" th:href="@{/admin/tickets}" >Tickets</a>
+                </li>
+                <li class="nav-item">
+                    <a aria-current="page" class="nav-link active" th:href="@{/admin/tickets/newticket}" >New Ticket</a>
+                </li>
+            </ul>
+        </div>
+	</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h2 th:text="${ticket.strTicketTitle}"></h2>
+            <hr/>
+            <h4 th:text="${ticket.strTicketShtDesc}"></h4>
+            <hr />
+            <div th:utext="${ticket.strTicketContent}">
+            </div>
+        </div>
+
+    </div>
+</div>
+  <footer class="footer-copyright text-center bg-dark py-3"
+        style="position:fixed; width:100%; bottom:0; color:white"
+        th:fragment="footer">
+    <div>
+        <strong>
+            Copyright &copy; 2022 
+        </strong>
+    </div>
+</footer>
+</body>
+</html>

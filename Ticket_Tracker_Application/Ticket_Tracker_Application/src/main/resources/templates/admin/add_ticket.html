@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Ticket Tracker Application</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head>
+<body>
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+		<!-- Brand -->
+		<a class="navbar-brand" href="#">Ticket Tracker Appication - 1.0</a>
+
+		<!-- Toggler/collapsibe Button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a aria-current="page" class="nav-link active" th:href="@{/admin/tickets}" >Tickets</a>
+                </li>
+                <li class="nav-item">
+                    <a aria-current="page" class="nav-link active" th:href="@{/admin/tickets/newticket}" >New Ticket</a>
+                </li>
+            </ul>
+        </div>
+	</nav>
+<div class="container">
+    <div class="row col-md-8 offset-md-2">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-center"> New Ticket</h2>
+            </div>
+            <div class="card-body">
+                <form role="form" method="post" th:action="@{/admin/tickets}" th:object="${ticket}">
+                        <div class="mb-3">
+                        <label class="form-label"> Title </label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="title"
+                                placeholder="Enter ticket title"
+                                name="title"
+                                th:field="*{strTicketTitle}"
+                        />
+                        <p th:if="${#fields.hasErrors('strTicketTitle')}" class="text-danger"
+                           th:errors="*{strTicketTitle}"></p>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Short Description</label>
+                        <textarea
+                                class="form-control"
+                                id="shortDescription"
+                                placeholder="Enter ticket short description"
+                                rows="3"
+                                name="shortDescription"
+                                th:field="*{strTicketShtDesc}"
+                        >
+
+                        </textarea>
+                        <p th:if="${#fields.hasErrors('strTicketShtDesc')}" class="text-danger"
+                           th:errors="*{strTicketShtDesc}"></p>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Content</label>
+                        <textarea
+                                class="form-control"
+                                id="content"
+                                placeholder="Enter ticket content"
+                                rows="12"
+                                name="content"
+                                th:field="*{strTicketContent}"
+                        >
+                        </textarea>
+                        <p th:if="${#fields.hasErrors('strTicketContent')}" class="text-danger"
+                           th:errors="*{strTicketContent}"></p>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<br /><br /><br /><br /><br />
+       <footer class="footer-copyright text-center bg-dark py-3"
+        style="position:fixed; width:100%; bottom:0; color:white"
+        th:fragment="footer">
+    <div>
+        <strong>
+            Copyright &copy; 2022 
+        </strong>
+    </div>
+</footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
+<script>
+                        ClassicEditor
+                                .create( document.querySelector( '#content' ) )
+                                .then( editor => {
+                                        console.log( editor );
+                                } )
+                                .catch( error => {
+                                        console.error( error );
+                                } );
+                </script>
+</body>
+</html>
